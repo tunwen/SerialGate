@@ -22,6 +22,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionNewPair_triggered()
 {
     Dialog_NewPair dlg(this);
+    dlg.setWindowTitle("新建服务");
 
     if(QDialog::Accepted ==dlg.exec())
     {
