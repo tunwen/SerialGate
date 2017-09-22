@@ -177,3 +177,14 @@ void MainWindow::on_actionStop_triggered()
         ui->tableWidget->item(row,7)->setTextColor(QColor(237,28,36));
     }
 }
+
+void MainWindow::on_actionDelPair_triggered()
+{
+    int row = ui->tableWidget->currentRow();
+    if(row>=0)
+    {
+        this->m_listMatch[row]->stopServ();
+        ui->tableWidget->removeRow(row);
+        this->m_listMatch.removeAt(row);
+    }
+}

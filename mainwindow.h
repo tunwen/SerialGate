@@ -28,6 +28,8 @@ private slots:
     void slot_timer();
     void on_actionStop_triggered();
 
+    void on_actionDelPair_triggered();
+
 private:
     Ui::MainWindow *ui;
     void initeTable();

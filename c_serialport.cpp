@@ -87,7 +87,7 @@ QStringList C_SerialPort::baudList()
 QStringList C_SerialPort::dataBList()
 {
     QStringList list;
-    list<<"5"<<"6"<<"7"<<"8";
+    list<<"8"<<"7"<<"6"<<"5";
     return list;
 }
 
