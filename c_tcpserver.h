@@ -15,6 +15,7 @@ public:
 
 signals:
     sig_recvData(QByteArray &array);
+    sig_newConnect(QString IP,quint16 nPort);
 private:
     quint64 m_sum;
     quint32 m_byte;
@@ -27,12 +28,14 @@ public slots:
 private:
     QTcpServer m_tcpServer;
     QTcpSocket *m_clientSock;
+    bool m_isConnected;
 public:
     bool startListen(quint16 nPort=502);
     void stopServ();
     void sendData(QByteArray &array);
 
     void get_count(quint64 &sum,quint32 &byte_s,quint32 &byte);
+    bool isConnnected();
 };
 
 #endif // C_TCPSERVER_H

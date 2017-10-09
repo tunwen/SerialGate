@@ -42,9 +42,12 @@ bool C_SerialPort::openCOM(QString comName, qint32 baudRate, QSerialPort::DataBi
 //关闭串口
 void C_SerialPort::closeCOM()
 {
-    this->m_serialPort.clearError();
-    this->m_serialPort.clear();
-    this->m_serialPort.close();
+    if(this->m_serialPort.isOpen())
+    {
+        this->m_serialPort.clearError();
+        this->m_serialPort.clear();
+        this->m_serialPort.close();
+    }
 }
 
 //写数据

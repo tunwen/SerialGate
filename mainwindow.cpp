@@ -102,6 +102,11 @@ void MainWindow::on_actionNewPair_triggered()
          ui->tableWidget->setItem(sum,colDex++,item);
          item->setFlags(item->flags() & (~Qt::ItemIsEditable));
          item->setTextColor(QColor(237,28,36));
+
+         // 连接客户端
+         item = new QTableWidgetItem(QString("%1").arg("无连接"));
+         ui->tableWidget->setItem(sum,colDex++,item);
+         item->setFlags(item->flags() & (~Qt::ItemIsEditable));
     }
 }
 
@@ -116,7 +121,7 @@ void MainWindow::initeTable()
     ui->tableWidget->verticalHeader()->setDefaultSectionSize(25);//可以设置tableview所有行的默认行高。
 
     QStringList headerLabels;
-    headerLabels<<tr("编号")<<tr("本机IP地址")<<tr("TCP端口号")<<tr("串行端口")<<tr("串口配置")<<tr("上行传输")<<tr("下行传输")<<tr("服务状态");
+    headerLabels<<tr("编号")<<tr("本机IP地址")<<tr("TCP端口号")<<tr("串行端口")<<tr("串口配置")<<tr("上行传输")<<tr("下行传输")<<tr("服务状态")<<tr("连接客户端");
     ui->tableWidget->setColumnCount(headerLabels.size());
     ui->tableWidget->setHorizontalHeaderLabels(headerLabels);
     ui->tableWidget->setIconSize(QSize(28,28));
@@ -164,6 +169,20 @@ void MainWindow::slot_timer()
             this->m_listMatch[i]->get_down_count(sum,byte_s,byte);
             str = QString("%1/%2/%3").arg(sum).arg(byte_s).arg(byte);
             ui->tableWidget->item(i,6)->setText(str);
+
+            //
+            QString IP;
+            quint16 port;
+            if(this->m_listMatch[i]->isConnnected())
+            {
+                this->m_listMatch[i]->getRemoteInfo(IP,port);
+                str = QString("%1:%2").arg(IP).arg(port);
+                ui->tableWidget->item(i,8)->setText(str);
+            }
+            else
+            {
+                ui->tableWidget->item(i,8)->setText("未连接");
+            }
         }
     }
 }
@@ -189,3 +208,5 @@ void MainWindow::on_actionDelPair_triggered()
         this->m_listMatch.removeAt(row);
     }
 }
+
+

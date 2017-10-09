@@ -17,10 +17,8 @@ class C_PortMatch : public QObject
 public:
     explicit C_PortMatch(QObject *parent = 0);
 
-signals:
-
 public slots:
-
+     slot_newConnect(QString IP,quint16 Port);
 private:
     C_tcpServer m_tcpServer;    //
     C_SerialPort m_serialPort;  //
@@ -31,6 +29,10 @@ private:
     enum QSerialPort::StopBits m_stopBits;
     enum QSerialPort::Parity m_parity;
     enum QSerialPort::FlowControl m_flowControl;
+
+    QString m_remoteSockIP;
+    quint16 m_remoteSockPort;
+
 public:
     void setCFG(quint16 nPort
                 ,QString comName
@@ -44,6 +46,9 @@ public:
 
     void get_up_count(quint64 &sum,quint32 &byte_s,quint32 &byte);
     void get_down_count(quint64 &sum,quint32 &byte_s,quint32 &byte);
+
+    void getRemoteInfo(QString &IP,quint16 &nPort);
+    bool isConnnected();
 };
 
 
