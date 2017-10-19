@@ -1,5 +1,4 @@
 #include "c_tcpserver.h"
-
 C_tcpServer::C_tcpServer(QObject *parent) : QObject(parent)
 {
     m_sum = 0;
@@ -65,7 +64,7 @@ bool C_tcpServer::startListen(quint16 nPort)
     {
         return true;
     }
-    return this->m_tcpServer.listen(QHostAddress("192.168.1.100"),nPort);
+    return this->m_tcpServer.listen(QHostAddress("127.0.0.1"),nPort);
 }
 
 void C_tcpServer::stopServ()

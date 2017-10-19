@@ -10,6 +10,7 @@ Dialog_NewPair::Dialog_NewPair(QWidget *parent) :
     ui->lineEdit_tcpPort->setText("9100");
     ui->comboBox_COM->addItems(C_SerialPort::comList());
     ui->comboBox_baudRate->addItems(C_SerialPort::baudList());
+    ui->comboBox_baudRate->setCurrentText("9600");
     ui->comboBox_dataBits->addItems(C_SerialPort::dataBList());
     ui->comboBox_stopBits->addItems(C_SerialPort::stopBList());
     ui->comboBox_parity->addItems(C_SerialPort::parityList());
